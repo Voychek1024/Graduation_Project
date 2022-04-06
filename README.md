@@ -17,24 +17,33 @@
 #### 数据增强方法：
 1. 基于基本图像处理技术
 2. 基于深度学习（GAN）
+3. 上述两者结合
 
 #### 应用场景：材料图像
-- 获取：DTD数据集
-- 适用模型：ResNet34
-- 指标：Top-1 Accuracy
+- 获取：DTD数据集（1:5随机划分）
+- 适用模型：CNN、LeNet、AlexNet、VGG、ResNet、ResNeXt、DenseNet、SENet
+- 指标：Top-1 Accuracy（测试集、文献），训练时间
+- 作图：Epoch-Error、Epoch-Loss图像（保留绘图原始数据）
 
 #### 进展：
-任务状态![status](https://img.shields.io/badge/status-working-orange)
+任务状态 ![status](https://img.shields.io/badge/status-working-orange)
 
-- [x] 环境配置
-- [x] CIFAR10：ResNet分类器
-- [x] CIFAR10：GAN效果测试
-- [ ] CIFAR10：训练整合
-- [x] DTD：ResNet分类器
-- [ ] DTD：GAN效果测试
-- [ ] DTD：训练整合
-- [ ] 结果分析
-- [ ] 书写论文
+选用数据集：
+- [ ] cifar10数据集（样例）
+- [ ] dtd数据集（对照组）
+- [ ] dtd数据集（基本增强扩充）
+- [ ] dtd数据集（GAN增强扩充）
+- [ ] dtd数据集（基本+GAN增强扩充）
+
+选用神经网络：
+- [ ] CNN
+- [ ] LeNet
+- [ ] AlexNet
+- [ ] VGG
+- [ ] ResNet
+- [ ] ResNeXt
+- [ ] DenseNet
+- [ ] SENet
 
 #### 环境配置：
 Anaconda3 (Python 3.8.x)
