@@ -29,9 +29,9 @@
 任务状态 ![status](https://img.shields.io/badge/status-working-orange)
 
 选用数据集：
-- [ ] cifar10数据集（样例）
-- [ ] dtd数据集（对照组）
-- [ ] dtd数据集（基本增强扩充）
+- [x] cifar10数据集（样例）
+- [x] dtd数据集（对照组）
+- [x] dtd数据集（基本增强扩充）
 - [ ] dtd数据集（GAN增强扩充）
 - [ ] dtd数据集（基本+GAN增强扩充）
 
@@ -40,7 +40,7 @@
 - [ ] LeNet
 - [ ] AlexNet
 - [ ] VGG
-- [ ] ResNet
+- [x] ResNet
 - [ ] ResNeXt
 - [ ] DenseNet
 - [ ] SENet
