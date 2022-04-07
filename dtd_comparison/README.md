@@ -11,9 +11,9 @@ Epoch-Error、Epoch-Loss图像
 - [x] AlexNet
 - [x] VGG
 - [x] ResNet
-- [ ] ResNeXt
-- [ ] Inception
-- [ ] DenseNet
+- [x] ResNeXt
+- [ ] Inception （299px超限）
+- [x] DenseNet
 - [ ] SENet
 * * *
 #### 实验结果：
