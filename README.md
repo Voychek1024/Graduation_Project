@@ -21,7 +21,7 @@
 
 #### 应用场景：材料图像
 - 获取：DTD数据集（1:5随机划分）
-- 适用模型：CNN、LeNet、AlexNet、VGG、ResNet、ResNeXt、DenseNet、SENet
+- 适用模型：AlexNet、VGG、ResNet、ResNeXt、Inception、DenseNet、SENet
 - 指标：Top-1 Accuracy（测试集、文献），训练时间
 - 作图：Epoch-Error、Epoch-Loss图像（保留绘图原始数据）
 
@@ -36,11 +36,11 @@
 - [ ] dtd数据集（基本+GAN增强扩充）
 
 选用神经网络：
-- [ ] CNN
 - [x] AlexNet
 - [x] VGG
 - [x] ResNet
 - [ ] ResNeXt
+- [ ] Inception
 - [ ] DenseNet
 - [ ] SENet
 

@@ -8,11 +8,11 @@ Epoch-Error、Epoch-Loss图像
 - [ ] 相关训练
  * * *
 #### 选用神经网络：
-- [ ] CNN
 - [x] AlexNet
 - [x] VGG
 - [x] ResNet
 - [ ] ResNeXt
+- [ ] Inception
 - [ ] DenseNet
 - [ ] SENet
 * * *
