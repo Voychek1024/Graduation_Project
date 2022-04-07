@@ -37,9 +37,8 @@
 
 选用神经网络：
 - [ ] CNN
-- [ ] LeNet
-- [ ] AlexNet
-- [ ] VGG
+- [x] AlexNet
+- [x] VGG
 - [x] ResNet
 - [ ] ResNeXt
 - [ ] DenseNet

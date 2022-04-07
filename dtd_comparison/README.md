@@ -4,17 +4,17 @@
 Epoch-Error、Epoch-Loss图像
 * * *
 #### 形式：
-- [ ] 数据集拆分
+- [x] 数据集拆分
 - [ ] 相关训练
  * * *
 #### 选用神经网络：
-- [ ] MLP
-- [ ] LeNet
-- [ ] AlexNet
-- [ ] VGG
-- [ ] ResNet
+- [ ] CNN
+- [x] AlexNet
+- [x] VGG
+- [x] ResNet
 - [ ] ResNeXt
 - [ ] DenseNet
 - [ ] SENet
 * * *
 #### 实验结果：
+可能需要消歧，详见labels_joint_anno.txt

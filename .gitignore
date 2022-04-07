@@ -134,4 +134,6 @@ dtd_basic/data/
 dtd_gan/data/
 dtd_gan_basic_man/data/
 dtd_comparison/data/
-dtd_comparison/assets/
+
+# model parameters
+*.pt
