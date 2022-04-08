@@ -39,9 +39,9 @@
 - [x] AlexNet
 - [x] VGG
 - [x] ResNet
-- [ ] ResNeXt
+- [x] ResNeXt
 - [ ] Inception
-- [ ] DenseNet
+- [x] DenseNet
 - [ ] SENet
 
 #### 环境配置：
