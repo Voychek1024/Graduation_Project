@@ -134,6 +134,9 @@ dtd_basic/data/
 dtd_gan/data/
 dtd_gan_basic_man/data/
 dtd_comparison/data/
+cyclegan_playground/data/
+cyclegan_playground/images/
+# cyclegan_playground/results/
 
 # model parameters
 *.pt
