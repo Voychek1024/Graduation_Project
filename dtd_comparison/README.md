@@ -5,16 +5,16 @@ Epoch-Error、Epoch-Loss图像
 * * *
 #### 形式：
 - [x] 数据集拆分
-- [ ] 相关训练
+- [x] 相关训练
  * * *
 #### 选用神经网络：
-- [x] AlexNet
+- [x] ShuffleNet
 - [x] VGG
 - [x] ResNet
 - [x] ResNeXt
-- [ ] Inception （299px超限）
+- [x] MobileNet
 - [x] DenseNet
-- [ ] SENet
+- [x] SENet
 * * *
 #### 实验结果：
 可能需要消歧，详见labels_joint_anno.txt

@@ -36,13 +36,13 @@
 - [ ] dtd数据集（基本+GAN增强扩充）
 
 选用神经网络：
-- [x] AlexNet
+- [x] ShuffleNet
 - [x] VGG
 - [x] ResNet
 - [x] ResNeXt
-- [ ] Inception
+- [x] MobileNet
 - [x] DenseNet
-- [ ] SENet
+- [x] SENet
 
 #### 环境配置：
 Anaconda3 (Python 3.8.x)
