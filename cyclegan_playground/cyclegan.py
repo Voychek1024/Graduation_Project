@@ -10,6 +10,7 @@ import datetime
 import time
 
 import torchvision.transforms as transforms
+from torchvision.datasets import ImageFolder
 from torchvision.utils import save_image, make_grid
 
 from torch.utils.data import DataLoader
@@ -42,8 +43,8 @@ parser.add_argument("--channels", type=int, default=3, help="number of image cha
 parser.add_argument("--sample_interval", type=int, default=10, help="interval between saving generator outputs")
 parser.add_argument("--checkpoint_interval", type=int, default=-1, help="interval between saving model checkpoints")
 parser.add_argument("--n_residual_blocks", type=int, default=7, help="number of residual blocks in generator")
-parser.add_argument("--lambda_cyc", type=float, default=1.5, help="cycle loss weight")
-parser.add_argument("--lambda_id", type=float, default=1.0, help="identity loss weight")
+parser.add_argument("--lambda_cyc", type=float, default=1.0, help="cycle loss weight")
+parser.add_argument("--lambda_id", type=float, default=0.0, help="identity loss weight")
 opt = parser.parse_args()
 print(opt)
 
@@ -112,13 +113,28 @@ Tensor = torch.cuda.FloatTensor if cuda else torch.Tensor
 fake_A_buffer = ReplayBuffer()
 fake_B_buffer = ReplayBuffer()
 
+# Batch Normalization
+# cyclegan_playground/data/banded/train/A
+images_dir = "./data/" + opt.dataset_name + "/train/"
+means = torch.zeros(3)
+stds = torch.zeros(3)
+
+train_data = ImageFolder(root=images_dir, transform=transforms.ToTensor())
+
+for img, label in train_data:
+    means += torch.mean(img, dim=(1, 2))
+    stds += torch.std(img, dim=(1, 2))
+means /= len(train_data)
+stds /= len(train_data)
+print("Means and Stds of current dataset is {}, {}".format(means, stds))
+
 # Image transformations
 transforms_ = [
-    transforms.CenterCrop((opt.img_height, opt.img_width)),
+    transforms.RandomCrop((opt.img_height, opt.img_width)),
     transforms.Resize((opt.img_height, opt.img_width)),
-    # transforms.RandomHorizontalFlip(),
+    transforms.RandomHorizontalFlip(),
     transforms.ToTensor(),
-    transforms.Normalize(mean=[0.5277, 0.4735, 0.4239], std=[0.1801, 0.1818, 0.1784]),
+    transforms.Normalize(mean=means, std=stds),
 ]
 
 # Training data loader
@@ -153,9 +169,9 @@ def sample_images(batches_done):
     fake_B = make_grid(fake_B, nrow=5, normalize=True)
     # Arange images along y-axis
     image_grid = torch.cat((real_A, fake_B, real_B, fake_A), 1)
-    save_image(image_grid, "images/%s/%s.png" % (opt.dataset_name, batches_done), normalize=False)
+    save_image(image_grid, "images/%s/%s_%s.png" % (opt.dataset_name, batches_done, opt.lambda_cyc), normalize=False)
 
-
+1
 # ----------
 #  Training
 # ----------
@@ -309,7 +325,7 @@ if __name__ == '__main__':
     try:
         find_last = os.listdir("./images/" + opt.dataset_name)[-1]
         shutil.copyfile("./images/" + opt.dataset_name + "/" + find_last,
-                        "./results/cyclegan_{}_e{}-d{}_r{}_cyc{}_id{}.png".format(
+                        "./results/cyclegan_{}_e{}-d{}_r{}_cyc{}_id{}_BN_DA.png".format(
                             opt.dataset_name, opt.n_epochs,
                             opt.decay_epoch,
                             opt.n_residual_blocks,
