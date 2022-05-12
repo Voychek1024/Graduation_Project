@@ -137,6 +137,11 @@ dtd_comparison/data/
 cyclegan_playground/data/
 cyclegan_playground/images/
 # cyclegan_playground/results/
+stylegan_playground/data/
 
 # model parameters
 *.pt
+
+# StyleGAN outputs
+stylegan_playground/out/
+stylegan_playground/training-runs/

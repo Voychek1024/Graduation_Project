@@ -1,0 +1,7 @@
+# for automation use
+
+python generate.py --outdir=out\veined --seeds=1-300 --network=C:\Users\Osea\JupyterLabProjects\Graduation_Project\stylegan_playground\training-runs\00001-veined-low_shot-color-translation-cutout\network-snapshot-000200.pkl
+
+python train.py --outdir=training-runs --data=C:\Users\Osea\JupyterLabProjects\Graduation_Project\stylegan_playground\data\veined.zip --gpus=1 --metrics=none 
+
+python train.py --outdir=training-runs --data=C:\Users\Osea\JupyterLabProjects\Graduation_Project\stylegan_playground\data\zigzagged.zip --gpus=1 --metrics=none
