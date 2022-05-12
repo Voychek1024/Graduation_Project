@@ -20,7 +20,7 @@
 3. 上述两者结合
 
 #### 应用场景：材料图像
-- 获取：DTD数据集（1:5随机划分）
+- 获取：DTD数据集（4折交叉实验）
 - 适用模型：AlexNet、VGG、ResNet、ResNeXt、Inception、DenseNet、SENet
 - 指标：Top-1 Accuracy（测试集、文献），训练时间
 - 作图：Epoch-Error、Epoch-Loss图像（保留绘图原始数据）

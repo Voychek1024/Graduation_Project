@@ -1,52 +1,63 @@
-import os
-import math
 import random
 
-from matplotlib.image import imread
-import imageio
-from scipy import misc, ndimage
+import cv2
 import numpy as np
+from scipy import ndimage
 
 dataset_path = "./data/dtd/images/"
 
+
 def maximize_area(w, h, angle):
-    if w <= 0 or h <= 0:
-        return 0, 0
+    angle = np.abs(angle)
+    wr, hr = (w, h) if w > h else (h, w)
+    beta = np.arctan2(hr, wr)
+    gamma = np.pi / 2.0 - beta - np.radians(angle)
+    _f = (hr / 2.0) / np.cos(gamma)
+    _x = 2.0 * _f * np.cos(beta)
+    _y = 2.0 * _f * np.sin(beta)
+    canvas_w = wr * np.cos(np.radians(angle)) + hr * np.sin(np.radians(angle))
+    canvas_h = wr * np.sin(np.radians(angle)) + hr * np.cos(np.radians(angle))
 
-    width_is_longer = w >= h
-    side_long, side_short = (w, h) if width_is_longer else (h, w)
+    _x = (canvas_w - _x) / 2.0
+    _y = (canvas_h - _y) / 2.0
 
-    sin_a, cos_a = abs(math.sin(angle)), abs(math.cos(angle))
-    if side_short <= 2. * sin_a * cos_a * side_long or abs(sin_a - cos_a) < 1e-10:
-        x = 0.5 * side_short
-        wr, hr = (x / sin_a, x / cos_a) if width_is_longer else (x / cos_a, x / sin_a)
-    else:
-        cos_2a = cos_a * cos_a - sin_a * sin_a
-        wr, hr = (w * cos_a - h * sin_a) / cos_2a, (h * cos_a - w * sin_a) / cos_2a
+    return int(_x), int(_y)
 
-    return int(wr), int(hr)
+
+def random_crop(_img, crop_idx=256):
+    H, W, C = _img.shape
+    if W - crop_idx <= 0 or H - crop_idx <= 0:
+        return _img
+    x1 = np.random.randint(0, W - crop_idx)
+    y1 = np.random.randint(0, H - crop_idx)
+    x2 = x1 + crop_idx
+    y2 = y1 + crop_idx
+    return _img[y1:y2, x1:x2]
 
 
 def geometrical_trans(_image, _para):
+    rotate_idx = 0
     lx, ly, ch = _image.shape
 
-    # Cropping
+    # Random cropping
     if _para == 0:
-        crop_idx = lx if lx < ly else ly
-        crop = _image[crop_idx // 4: - crop_idx // 4, crop_idx // 4: - crop_idx // 4]
-        return crop
+        return random_crop(_image)
 
-    # up <-> down flip
+    # Horizontal flip
     elif _para == 1:
-        flip = np.flipud(_image)
+        flip = np.fliplr(_image)
         return flip
 
-    # rotation
+    # Rotation and cropping
     elif _para == 2:
-        rotate_idx = random.randint(0, 180)
-        rotate = ndimage.rotate(_image, rotate_idx)
+        while rotate_idx == 0:
+            rotate_idx = random.randint(-20, 20)
+        rotate = ndimage.rotate(_image, rotate_idx, reshape=True)
+        # cv2.imshow("rotate", rotate)
         lxx, lyy = maximize_area(lx, ly, rotate_idx)
-        rotate = rotate[lxx // 2: - lxx // 2, lyy // 2: - lyy // 2]
+        rotate = rotate[lyy:-lyy, lxx:-lxx]
+        # cv2.imshow("result", rotate)
+        cv2.waitKey(0)
         return rotate
 
     else:
@@ -54,28 +65,27 @@ def geometrical_trans(_image, _para):
 
 
 if __name__ == '__main__':
-    with open("label_train.txt", 'r', encoding='utf-8') as in_file:
-        with open("label_train_geo.txt", 'w', encoding='utf-8', newline='\n') as out_file:
+    with open("label_origin.txt", 'r', encoding='utf-8') as in_file:
+        with open("label_geo.txt", 'w', encoding='utf-8', newline='\n') as out_file:
             lines = in_file.readlines()
             for line in lines:
                 file_name = line.split('\t')[0].split('/')[-1][:-4]
                 file_ext = line.split('\t')[0].split('/')[-1][-4:]
                 file_path = "/".join(line.split('/')[:-1]) + "/"
-                f = imread(file_path + file_name + file_ext)
+                f = cv2.imread(file_path + file_name + file_ext)
                 out_file.write(line)
-
                 try:
                     f_c = geometrical_trans(f, 0)
-                    imageio.imsave(file_path + file_name + '_c' + file_ext, f_c)
+                    cv2.imwrite(file_path + file_name + '_c' + file_ext, f_c)
                     out_file.write(file_path + file_name + '_c' + file_ext + '\t' + line.split('\t')[1])
 
                     f_f = geometrical_trans(f, 1)
-                    imageio.imsave(file_path + file_name + '_f' + file_ext, f_f)
+                    cv2.imwrite(file_path + file_name + '_f' + file_ext, f_f)
                     out_file.write(file_path + file_name + '_f' + file_ext + '\t' + line.split('\t')[1])
 
                     f_r = geometrical_trans(f, 2)
-                    imageio.imsave(file_path + file_name + '_r' + file_ext, f_r)
+                    cv2.imwrite(file_path + file_name + '_r' + file_ext, f_r)
                     out_file.write(file_path + file_name + '_r' + file_ext + '\t' + line.split('\t')[1])
-                except ValueError:
+                except cv2.error:
+                    print("Failed")
                     continue
-
