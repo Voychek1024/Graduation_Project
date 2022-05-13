@@ -140,3 +140,8 @@ cyclegan_playground/images/
 
 # model parameters
 *.pt
+
+# StyleGAN outputs
+/dtd_gan/pruned/
+/dtd_gan/output/
+/dtd_gan/backups/

@@ -11,6 +11,9 @@
       <excludeFolder url="file://$MODULE_DIR$/dtd_gan/data" />
       <excludeFolder url="file://$MODULE_DIR$/example_cifar10/data" />
       <excludeFolder url="file://$MODULE_DIR$/cyclegan_playground/images" />
+      <excludeFolder url="file://$MODULE_DIR$/dtd_gan/backups" />
+      <excludeFolder url="file://$MODULE_DIR$/dtd_gan/output" />
+      <excludeFolder url="file://$MODULE_DIR$/dtd_gan/pruned" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
