@@ -137,6 +137,7 @@ dtd_comparison/data/
 cyclegan_playground/data/
 cyclegan_playground/images/
 # cyclegan_playground/results/
+stylegan_playground/data/
 
 # model parameters
 *.pt
@@ -145,3 +146,5 @@ cyclegan_playground/images/
 /dtd_gan/pruned/
 /dtd_gan/output/
 /dtd_gan/backups/
+stylegan_playground/out/
+stylegan_playground/training-runs/
