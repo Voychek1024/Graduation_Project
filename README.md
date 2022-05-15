@@ -12,28 +12,27 @@
 
 #### 思路大纲：
 - 小样本数据集、分类问题
-- 评价指标：Accuracy
+- 评价指标：Precision, Recall, F1-Score, Accuracy
 
 #### 数据增强方法：
-1. 基于基本图像处理技术
-2. 基于深度学习（GAN）
+1. 基于基本图像变换技术
+2. 基于深度学习（StyleGAN）
 3. 上述两者结合
 
 #### 应用场景：材料图像
 - 获取：DTD数据集（4折交叉实验）
 - 适用模型：ShuffleNet、VGG、ResNet、ResNeXt、SqueezeNet、DenseNet、SENet
-- 指标：Top-1 Accuracy（测试集、文献），训练时间
-- 作图：Epoch-Error、Epoch-Loss图像（保留绘图原始数据）
+- 指标：Precision, Recall, F1-Score, Accuracy 
+- 作图：dtd_gan_basic_man(100%, 75%, 50%, 20%, 0%) - Accuracy
 
 #### 进展：
-任务状态 ![status](https://img.shields.io/badge/status-working-orange)
+任务状态 ![status](https://img.shields.io/badge/status-still--working-yellowgreen)
 
 选用数据集：
-- [x] cifar10数据集（样例）
 - [x] dtd数据集（对照组）
 - [x] dtd数据集（基本增强扩充）
 - [x] dtd数据集（GAN增强扩充）
-- [ ] dtd数据集（基本+GAN增强扩充）
+- [x] dtd数据集（复合增强扩充）
 
 选用神经网络：
 - [x] ShuffleNet
