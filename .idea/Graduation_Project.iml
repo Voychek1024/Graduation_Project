@@ -14,6 +14,10 @@
       <excludeFolder url="file://$MODULE_DIR$/dtd_gan/backups" />
       <excludeFolder url="file://$MODULE_DIR$/dtd_gan/output" />
       <excludeFolder url="file://$MODULE_DIR$/dtd_gan/pruned" />
+      <excludeFolder url="file://$MODULE_DIR$/dtd_gan/models" />
+      <excludeFolder url="file://$MODULE_DIR$/stylegan_playground/data" />
+      <excludeFolder url="file://$MODULE_DIR$/stylegan_playground/out" />
+      <excludeFolder url="file://$MODULE_DIR$/stylegan_playground/training-runs" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

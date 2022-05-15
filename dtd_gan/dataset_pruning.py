@@ -4,15 +4,12 @@ import cv2
 import numpy as np
 import shutil
 
-for item in os.listdir("./stds/"):
-    stds = joblib.load("./stds/{}".format(item))
-    counter = 0
-    thresh = 15.0 if min(stds) < 15.0 else 17.0
-    for datum in stds:
-        if datum < thresh:
-            counter += 1
-            idx = stds.index(datum)
-            # print("./output/fibrous/seed{:04d}.png".format(idx + 1), datum)
-            shutil.move("./output/{}/seed{:04d}.png".format(item[:-5], idx + 1),
-                        "./pruned/{}/seed{:04d}.png".format(item[:-5], idx + 1))
-    print(item, counter, thresh)
+for item in os.listdir("./output/"):
+    dir_list = os.listdir("./output/" + item)
+    if dir_list.__len__() > 850:
+        # print(os.listdir("./output/" + item)[-(dir_list.__len__() - 840):])
+        print(item, os.listdir("./output/" + item)[-(dir_list.__len__() - 850):].__len__())
+        # print("./output/fibrous/seed{:04d}.png".format(idx + 1), datum)
+        for file in os.listdir("./output/" + item)[-(dir_list.__len__() - 850):]:
+            shutil.move("./output/{}/{}".format(item, file),
+                        "./pruned/{}/{}".format(item, file))

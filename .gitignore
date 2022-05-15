@@ -148,3 +148,4 @@ stylegan_playground/data/
 /dtd_gan/backups/
 stylegan_playground/out/
 stylegan_playground/training-runs/
+/dtd_gan/models/
