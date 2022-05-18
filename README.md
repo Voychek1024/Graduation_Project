@@ -32,16 +32,12 @@
 - [x] dtd数据集（对照组）
 - [x] dtd数据集（基本增强扩充）
 - [x] dtd数据集（GAN增强扩充）
-- [x] dtd数据集（复合增强扩充）
+- [x] dtd数据集（75-25复合增强扩充）
+- [x] dtd数据集（50-50复合增强扩充）
+- [x] dtd数据集（25-75复合增强扩充）
 
 选用神经网络：
-- [x] ShuffleNet
-- [x] VGG
-- [x] ResNet
-- [x] ResNeXt
-- [x] MobileNet
-- [x] DenseNet
-- [x] SENet
+- [x] ResNet50
 
 #### 环境配置：
 Anaconda3 (Python 3.8.x)
