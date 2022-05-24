@@ -5,10 +5,10 @@
 
 数据增强方法对材料图像处理增益的研究
 
-**所需知识：python，图像处理，基础机器学习及深度学习**
+**所需知识：Python，图像处理，基础机器学习及深度学习**
 
 #### 课题简介：
-	数据增强方法在深度学习与机器学习中是解决小样本问题的常用方案之一。现有的数据增强方法种类较多，但其中并非所有的数据增强方法都适合材料图像的处理。针对现有的几种材料图像数据，筛选或组合现有的数据增强方法对其效果进行研究和探索，并尝试应用在常见的材料图像处理任务，在分类准确度或分割平均交并比等技术指标上取得有效的提升。通过本课题的研究，找到对于材料图像数据应用良好的数据增强方式，为进一步解决材料图像中的小样本难题提供可行的方案。
+> 数据增强方法在深度学习与机器学习中是解决小样本问题的常用方案之一。现有的数据增强方法种类较多，但其中并非所有的数据增强方法都适合材料图像的处理。针对现有的几种材料图像数据，筛选或组合现有的数据增强方法对其效果进行研究和探索，并尝试应用在常见的材料图像处理任务，在分类准确度或分割平均交并比等技术指标上取得有效的提升。通过本课题的研究，找到对于材料图像数据应用良好的数据增强方式，为进一步解决材料图像中的小样本难题提供可行的方案。
 
 #### 思路大纲：
 - 小样本数据集、分类问题
@@ -26,7 +26,7 @@
 - 作图：dtd_gan_basic_man(100%, 75%, 50%, 20%, 0%) - Accuracy
 
 #### 进展：
-任务状态 ![status](https://img.shields.io/badge/status-still--working-yellowgreen)
+任务状态 ![status](https://img.shields.io/badge/status-completed-%23008080)
 
 选用数据集：
 - [x] dtd数据集（对照组）
@@ -40,6 +40,8 @@
 - [x] ResNet50
 
 #### 环境配置：
-Anaconda3 (Python 3.8.x)
-
-pytorch, numpy, opencv, matplotlib, joblib, sklearn
+* Anaconda3 (Python 3.8.x, 64-bit)
+* PyTorch 1.7.1
+* CUDA toolkit 10.1
+* Python库：`pip install click requests tqdm pyspng ninja imageio-ffmpeg==0.4.3`
+* MSVC2019，需将`"C:\Program Files (x86)\Microsoft Visual Studio\<VERSION>\Community\VC\Auxiliary\Build\vcvars64.bat"`添加到`PATH`

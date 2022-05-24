@@ -129,18 +129,13 @@ dmypy.json
 .pyre/
 
 # Datasets
-example_cifar10/data/
-dtd_basic/data/
-dtd_gan/data/
-dtd_gan_basic_man/data/
-dtd_comparison/data/
-cyclegan_playground/data/
-cyclegan_playground/images/
-# cyclegan_playground/results/
-stylegan_playground/data/
+*/data/
 
 # model parameters
 *.pt
+
+# joblib dumps
+*.pkl
 
 # StyleGAN outputs
 /dtd_gan/pruned/
@@ -149,3 +144,4 @@ stylegan_playground/data/
 stylegan_playground/out/
 stylegan_playground/training-runs/
 /dtd_gan/models/
+/dtd_gan_basic_man/models/
