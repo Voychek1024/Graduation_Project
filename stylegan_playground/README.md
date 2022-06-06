@@ -30,6 +30,7 @@ python generate.py --outdir=%OUTPUT%/%DATASET% --network=%MODELS%/%DATASET%/%MOD
 | %DATA%          | 存放数据集的文件夹                          |
 | %DATASET%       | 数据集名称，共47类                          |
 | %TRAINING-RUNS% | training-runs文件夹，用于存放模型的快照输出 |
+| %MODELS%        | 存放已筛选模型的文件夹                      |
 | %MODEL%         | 模型名称，例如network-snapshot-000160.pkl   |
 | %OUTPUT%        | 存放输出图片的文件夹                        |
 
