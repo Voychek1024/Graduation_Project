@@ -1,29 +1,52 @@
-# DiffAugment for StyleGAN2 (PyTorch)
+#### StyleGAN_Playground
+StyleGAN实现基于以下Repo：[stylegan2-ada-pytorch](https://github.com/NVlabs/stylegan2-ada-pytorch) ，可检阅该仓库的README.md以获取更多支持。
 
-This repo is implemented upon [stylegan2-ada-pytorch](https://github.com/NVlabs/stylegan2-ada-pytorch) with minimal modifications to train and load DiffAugment-stylegan2 models in PyTorch. Please check the [stylegan2-ada-pytorch](https://github.com/NVlabs/stylegan2-ada-pytorch) README for the dependencies and the other usages of this codebase.
+#### Low-Shot 训练、生成方法
 
-## Low-Shot Generation
+数据集应以`.zip`形式进行存储。
 
-The following command is an example of training StyleGAN2 with the default *Color + Translation + Cutout* DiffAugment on 100-shot Obama with 1 GPU. See [here](https://data-efficient-gans.mit.edu/datasets/) for a list of our provided low-shot datasets. You may also prepare your own dataset and specify the path to your image folder.
+使用如下代码训练：
+
 ```bash
-python train.py --outdir=training-runs --data=https://data-efficient-gans.mit.edu/datasets/100-shot-obama.zip --gpus=1
+python train.py --outdir=training-runs --data=%DATA%/%DATASET%.zip --gpus=1 --metrics=none
 ```
 
-## Pre-Trained Models
+使用如下代码追加训练：
 
-The following commands are an example of generating images with our pre-trained 100-shot Obama model. See [here](https://data-efficient-gans.mit.edu/models/) for a list of our provided pre-trained models. The code will automatically convert a TensorFlow StyleGAN2 model to the compatible PyTorch version; you may also use `legacy.py` to do this manually.
 ```bash
-python generate.py --outdir=out --seeds=1-16 --network=https://data-efficient-gans.mit.edu/models/DiffAugment-stylegan2-100-shot-obama.pkl
-
-python generate_gif.py --output=obama.gif --seed=0 --num-rows=1 --num-cols=8 --network=https://data-efficient-gans.mit.edu/models/DiffAugment-stylegan2-100-shot-obama.pkl
+python train.py --outdir=training-runs --data=%DATA%/%DATASET%.zip --resume=%TRAINING-RUNS%/%DATASET%/%MODEL%.pkl --gpus=1 --metrics=none
 ```
 
-<img src="../imgs/obama.gif" width="1000px"/>
+使用如下代码生成：
 
-## Other Usages
+```bash
+python generate.py --outdir=%OUTPUT%/%DATASET% --network=%MODELS%/%DATASET%/%MODEL%.pkl --seeds=1-1000
+```
 
-To train on larger datasets (e.g., CIFAR and FFHQ), please follow the guidelines in the [stylegan2-ada-pytorch](https://github.com/NVlabs/stylegan2-ada-pytorch) README to prepare the datasets.
+其中，变量含义如下表所示：
 
-## Disclaimer
+| 变量名          | 变量含义                                    |
+| --------------- | ------------------------------------------- |
+| %DATA%          | 存放数据集的文件夹                          |
+| %DATASET%       | 数据集名称，共47类                          |
+| %TRAINING-RUNS% | training-runs文件夹，用于存放模型的快照输出 |
+| %MODEL%         | 模型名称，例如network-snapshot-000160.pkl   |
+| %OUTPUT%        | 存放输出图片的文件夹                        |
 
-This PyTorch codebase will not fully reproduce our paper's results, as it uses a different set of hyperparameters and a different evaluation protocal. Please refer to our [TensorFlow repo](https://github.com/mit-han-lab/data-efficient-gans/tree/master/DiffAugment-stylegan2) to fully reproduce the paper's results.
+需要根据具体系统环境加以修改。
+
+#### 免责声明
+
+此PyTorch代码库并非对原始论文的完全复现，详细结果复现请参考[TensorFlow repo](https://github.com/mit-han-lab/data-efficient-gans/tree/master/DiffAugment-stylegan2)。
+
+* * *
+
+#### 存放地址：
+
+[GitHub](https://github.com/Voychek1024/Graduation_Project)
+
+[OneDrive](https://1drv.ms/u/s!Ak7i9eRLkHfRg499frRiI75vpPOeJw?e=UGpf9j)
+
+[百度云](https://pan.baidu.com/s/1vHsv6fgeg1ddkgrEmm2wZg?pwd=quwc)
+
+其中，GitHub仅存储代码，以及小型文件；数据集与模型参数请从OneDrive或百度云下载。
